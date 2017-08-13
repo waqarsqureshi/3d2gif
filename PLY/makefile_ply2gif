@@ -1,0 +1,2 @@
+gifPLY: ply2gif.cpp
+	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../../ibs/sm_lib/ `pkg-config opencv --cflags --libs` -lGL -lGLU -lglut
