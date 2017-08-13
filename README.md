@@ -10,4 +10,6 @@ This program converts a 3D format file, OBJ and PLY to a gif file and mp4 file. 
 The ply2gif is written by Samart Moodleah, Lecturer, Faculty of Information Technology, King Mongkut's Institute of Technology Ladkrabang. 
 
 The obj2gif is edited from the ply2gif version by Waqar Shahid
-
+## How to compile
+gifPLY: ply2gif.cpp
+	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../../libs/sm_lib/ `pkg-config opencv --cflags --libs` -lGL -lGLU -lglut
