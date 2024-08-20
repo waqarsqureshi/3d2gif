@@ -141,7 +141,7 @@ int main(int argc, char **argv) {
         lightAngle.y = 0;
         lightAngle.z = 1;
 
-        cv::Mat img = cv::imread(pngName, CV_LOAD_IMAGE_COLOR);   // Read the image file
+        cv::Mat img = cv::imread(pngName, cv::IMREAD_COLOR);   // Read the image file
 
         std::vector<texture> textureCoord;
         v_color rgb_;
@@ -272,14 +272,14 @@ void CaptureViewPort(int no, string folder_path) {
         glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
         glReadPixels(0, 0, w, h, GL_BGR_EXT, GL_UNSIGNED_BYTE, bits);
 
-        IplImage * capImg = cvCreateImage( cvSize(w,h), IPL_DEPTH_8U, 3);
+        cv::Mat capImg = cv::Mat(cv::Size(w, h), CV_8UC3);
         for(int i=0; i < h; ++i)
         {
                 for(int j=0; j < w; ++j)
                 {
-                        capImg->imageData[i*capImg->widthStep + j*3+0] = (unsigned char)(bits[(h-i-1)*3*w + j*3+0]);
-                        capImg->imageData[i*capImg->widthStep + j*3+1] = (unsigned char)(bits[(h-i-1)*3*w + j*3+1]);
-                        capImg->imageData[i*capImg->widthStep + j*3+2] = (unsigned char)(bits[(h-i-1)*3*w + j*3+2]);
+                        capImg.at<cv::Vec3b>(i, j)[0] = static_cast<unsigned char>(bits[(h - i - 1) * 3 * w + j * 3 + 0]); // Blue
+                        capImg.at<cv::Vec3b>(i, j)[1] = static_cast<unsigned char>(bits[(h - i - 1) * 3 * w + j * 3 + 1]); // Green
+                        capImg.at<cv::Vec3b>(i, j)[2] = static_cast<unsigned char>(bits[(h - i - 1) * 3 * w + j * 3 + 2]); // Red
                 }
         }
 
@@ -296,9 +296,8 @@ void CaptureViewPort(int no, string folder_path) {
                 imgName = tempName + "/results_" + std::to_string(no) + ".jpg";
 
         // imgName = "result" + std::to_string(no) + ".jpg";
-        cvSaveImage(imgName.c_str(),capImg);
+        cv::imwrite(imgName, capImg);
         // cvSaveImage("result.jpg",capImg);
-        cvReleaseImage(&capImg);
         delete[] bits;
 
 }
