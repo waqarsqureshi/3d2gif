@@ -1,4 +1,8 @@
-OPENCV_PKG := $(shell pkg-config --exists opencv4 && echo opencv4 || echo opencv)
+OPENCV_PKG := $(shell if pkg-config --exists opencv4; then echo opencv4; elif pkg-config --exists opencv; then echo opencv; fi)
+
+ifeq ($(OPENCV_PKG),)
+$(error Neither opencv4 nor opencv pkg-config package was found)
+endif
 
 gifOBJ: obj2gif.cpp
 	g++ -Wall -g obj2gif.cpp -o gifOBJ -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config $(OPENCV_PKG) --cflags --libs` -lGL -lGLU -lglut
