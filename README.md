@@ -13,7 +13,7 @@ The obj2gif is edited from the ply2gif version by Waqar Shahid
 ## How to compile
 gifPLY: ply2gif.cpp
 	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config opencv4 --cflags --libs` -lGL -lGLU -lglut
-If your system only provides `opencv` (not `opencv4`) in pkg-config, replace `opencv4` only when running the `g++` command manually. The makefiles in `OBJ/makefile_obj2gif` and `PLY/makefile_ply2gif` auto-detect either package.
+If your system only provides `opencv` (not `opencv4`) in pkg-config, replace `opencv4` only when running the `g++` command manually. The project makefiles auto-detect either package.
 ## How to run the code
 
 // The instruction are same as ply. The only important thing is the obj. its png and mtl file should be in the same executable forlder and not in another folder.
