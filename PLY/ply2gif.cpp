@@ -130,7 +130,7 @@ int main(int argc, char **argv) {
         lightAngle.y = 0;
         lightAngle.z = 1;
 
-        cv::Mat img = cv::imread(pngName, CV_LOAD_IMAGE_COLOR);   // Read the image file
+        cv::Mat img = cv::imread(pngName, cv::IMREAD_COLOR);   // Read the image file
 
         std::vector<texture> textureCoord;
         v_color rgb_;

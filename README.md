@@ -12,7 +12,8 @@ The ply2gif is written by Samart Moodleah, Lecturer, Faculty of Information Tech
 The obj2gif is edited from the ply2gif version by Waqar Shahid
 ## How to compile
 gifPLY: ply2gif.cpp
-	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../../libs/sm_lib/ `pkg-config opencv --cflags --libs` -lGL -lGLU -lglut
+	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config opencv4 --cflags --libs` -lGL -lGLU -lglut
+The manual command above uses `opencv4`; if your system provides only `opencv`, replace `opencv4` with `opencv`. The project makefiles auto-detect either package.
 ## How to run the code
 
 // The instruction are same as ply. The only important thing is the obj. its png and mtl file should be in the same executable forlder and not in another folder.
@@ -37,4 +38,3 @@ additional options are:
 -rx, -ry, -rz : rotation axis (1 enable, 0 disable: depends on what is the combination os -x, -y, -z)
 -d 0 :delay 0 second
 -s 4 : this is set the size of object ( if using manually try to set the max of bounding box)
-
