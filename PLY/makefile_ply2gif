@@ -1,2 +1,4 @@
+OPENCV_PKG := $(shell pkg-config --exists opencv4 && echo opencv4 || echo opencv)
+
 gifPLY: ply2gif.cpp
-	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../../ibs/sm_lib/ `pkg-config opencv --cflags --libs` -lGL -lGLU -lglut
+	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config $(OPENCV_PKG) --cflags --libs` -lGL -lGLU -lglut

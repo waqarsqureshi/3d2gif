@@ -1,2 +1,4 @@
+OPENCV_PKG := $(shell pkg-config --exists opencv4 && echo opencv4 || echo opencv)
+
 gifOBJ: obj2gif.cpp
-	g++ -Wall -g obj2gif.cpp -o gifOBJ -std=c++11 -I /home/xyz/vcglib/vcglib -I ../../libs/sm_lib/ `pkg-config opencv --cflags --libs` -lGL -lGLU -lglut
+	g++ -Wall -g obj2gif.cpp -o gifOBJ -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config $(OPENCV_PKG) --cflags --libs` -lGL -lGLU -lglut
