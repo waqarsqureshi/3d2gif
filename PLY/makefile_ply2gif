@@ -4,5 +4,7 @@ ifeq ($(OPENCV_PKG),)
 $(error Neither opencv4 nor opencv pkg-config package were found. Install OpenCV development packages and verify pkg-config can locate OpenCV)
 endif
 
+VCGLIB_DIR ?= /home/xyz/vcglib/vcglib
+
 gifPLY: ply2gif.cpp
-	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I /home/xyz/vcglib/vcglib -I ../libs/sm_lib/ `pkg-config $(OPENCV_PKG) --cflags --libs` -lGL -lGLU -lglut
+	g++ -Wall -g ply2gif.cpp -o gifPLY -std=c++11 -I $(VCGLIB_DIR) -I ../libs/sm_lib/ `pkg-config $(OPENCV_PKG) --cflags --libs` -lGL -lGLU -lglut
